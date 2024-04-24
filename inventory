@@ -1,2 +1,6 @@
 [checkpoint]
+<<<<<<< HEAD
 192.168.56.113 ansible_python_interpreter=/usr/bin/python3
+=======
+192.168.56.104
+>>>>>>> 2581402375db9c9e052dc738785552445b03ce10
