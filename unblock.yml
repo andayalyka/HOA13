@@ -1,0 +1,25 @@
+---
+
+- name: Unblock IP Address with UFW
+  hosts: node
+  become: true
+
+  tasks:
+    - name: Ensure UFW is installed
+      apt:
+        name: ufw
+        state: present
+
+    - name: Allow specific IP address
+      command: ufw allow from "192.168.56.113" comment "Unblocking IP"
+
+    - name: Enable UFW
+      command: ufw --force enable
+
+    - name: Get UFW status
+      command: ufw status
+      register: ufw_status
+
+    - name: Check if IP is blocked
+      debug:
+        msg: "{{ 'IP is unblocked' if ('192.168.56.106/32' not in ufw_status.stdout) else 'IP is still blocked' }}"
